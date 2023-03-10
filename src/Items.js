@@ -59,9 +59,9 @@ export const Items = () => {
   console.log("Completed events count:", completedCount);
 
   const dataContainer = [
-    { title: "Pending", value: pendingCount, color: "#E38627" },
-    { title: "Todo", value: todoCount, color: "#C13C37" },
-    { title: "Completed", value: completedCount, color: "#6A2135" },
+    { title: "Pending", value: pendingCount, color: "#9C2C77" },
+    { title: "Todo", value: todoCount, color: "#E14D2A" },
+    { title: "Completed", value: completedCount, color: "#FFE15D" },
   ];
 
   //Adding new Event to the list
@@ -114,6 +114,7 @@ export const Items = () => {
         </div>
       </div>
       <PieChart
+      
         animate
         animationDuration={40}
         animationEasing="ease-in"
@@ -121,20 +122,22 @@ export const Items = () => {
         data={dataContainer}
         lineWidth={15}
         lengthAngle={360}
-        paddingAngle={0}
-        radius={50}
+        paddingAngle={15}
+        radius={30}
         rounded
         startAngle={0}
         viewBoxSize={[100, 100]}
         labelStyle={{
-          fontSize: "6px",
-          fontColor: "FFFFFA",
+          fontSize: "5px",
+          fontColor: "#ffffff",
           fontWeight: "500",
-          fontFamily: "monospace",
+          fontFamily: "sans-serif",
         }}
+        
         label={(data) => data.dataEntry.title}
         labelPosition={70}
       />
+
       {/* <div className="mt-10">
         <PieChart
           pendingCount={pendingCount}
