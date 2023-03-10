@@ -116,7 +116,7 @@ export const Items = () => {
       <PieChart
       
         animate
-        animationDuration={40}
+        animationDuration={500}
         animationEasing="ease-in"
         center={[50, 50]}
         data={dataContainer}
