@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { PieChart } from "react-minimal-pie-chart";
 
 //Components imports
 import { Header } from "./components/Header";
@@ -6,7 +7,7 @@ import { Pending } from "./components/Pending";
 import { ToDo } from "./components/ToDo";
 import { Completed } from "./components/Completed";
 import { AddEvent } from "./components/AddEvent";
-import { PieChart } from "./components/PieChart";
+
 
 export const Items = () => {
   const [showAddEvent, setShowAddEvent] = useState(false);
@@ -44,17 +45,24 @@ export const Items = () => {
     setEvents(updater);
   };
 
+  //function that will filter the events according to status
   const countEventsByStatus = (status) => {
     return events.filter((event) => event.status === status).length;
-  }
-  
+  };
+  //function that counts the events according to status
   const pendingCount = countEventsByStatus("Pending");
   const todoCount = countEventsByStatus("Todo");
   const completedCount = countEventsByStatus("Completed");
-  
+  //function that will display the count of events in consolelog
   console.log("Pending events count:", pendingCount);
   console.log("Todo events count:", todoCount);
   console.log("Completed events count:", completedCount);
+
+  const dataContainer = [
+    { title: "Pending", value: pendingCount, color: "#E38627" },
+    { title: "Todo", value: todoCount, color: "#C13C37" },
+    { title: "Completed", value: completedCount, color: "#6A2135" },
+  ];
 
   //Adding new Event to the list
   const addEvent = (event) => {
@@ -105,14 +113,35 @@ export const Items = () => {
           </div>
         </div>
       </div>
-      <div className="mt-10">
+      <PieChart
+        animate
+        animationDuration={40}
+        animationEasing="ease-in"
+        center={[50, 50]}
+        data={dataContainer}
+        lineWidth={15}
+        lengthAngle={360}
+        paddingAngle={0}
+        radius={50}
+        rounded
+        startAngle={0}
+        viewBoxSize={[100, 100]}
+        labelStyle={{
+          fontSize: "6px",
+          fontColor: "FFFFFA",
+          fontWeight: "500",
+          fontFamily: "monospace",
+        }}
+        label={(data) => data.dataEntry.title}
+        labelPosition={70}
+      />
+      {/* <div className="mt-10">
         <PieChart
           pendingCount={pendingCount}
           todoCount={todoCount}
           completedCount={completedCount}
         />
-    </div>
+      </div> */}
     </div>
   );
 };
-
